@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<string.h>
 struct dataset
 {
     int datayip;//源ip
@@ -18,12 +19,13 @@ struct ruleset
 int main()
 {
     int data,rule1,rule2;
-    int result1,result2,result3,result4,result5,result;
-    int rule;
+    int result1,result2,result3,result4,result5,result=0;
+    int cnt=0;
     freopen("packet1","r",stdin);
     freopen("result1","w",stdout);
-    while(scanf("%d",&data)!=EOF)
+    while(result!=1)
     {
+        cnt++;
         rule1=change(ruleset.ruleyip);
         rule2=change(ruleset.rulemip);
         result1=ip(dataset.datayip,rule1);
@@ -32,8 +34,11 @@ int main()
         result4=port(dataset.datamport,ruleset.rulemport);
         result5=pro(dataset.datapro,ruleset.rulepro);
         result=conclue(result1,result2,result3,result4,result5);
-        printf("%d",result);
     }
+    if(result==1)
+    printf("%d",cnt);
+    else
+    printf("-1");
     fclose(stdin);
     fclose(stdout);
     return 0;
